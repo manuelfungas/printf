@@ -20,12 +20,24 @@ int new_printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+					buffer = (char)va_arg(args, int);
+=======
+=======
+				{
+>>>>>>> c3dd57c (one more)
+>>>>>>> 7575e9f (one more)
 					char c = (char)va_arg(args, int);
 
 					_putchar(c);
 					len = len + 1;
 					break;
+				}
 				case 's':
+				{
 					char *buffer = va_arg(args, char *);
 					while (*buffer)
 					{
@@ -34,10 +46,13 @@ int new_printf(const char *format, ...)
 						len = len + 1;
 					}
 					break;
+				}
 				case '%':
+				{
 					_putchar('%');
 					len = len + 1;
 					break;
+				}
 				default:
 					_putchar('%');
 					_putchar(*format);
