@@ -15,6 +15,10 @@ int main(void)
 	printf("%s\n", str);
 	new_printf("%s\n", str);
 
+	char prc = '%';
+	printf("%%\n", prc);
+	new_printf("%%\n", prc);
+	
 	char first_ch = 'f';
 	printf("%c\n", first_ch);
 	new_printf("%c\n", first_ch);
