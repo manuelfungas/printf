@@ -21,7 +21,7 @@ int new_printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					buffer = (char *)va_arg(args, int);
+					buffer = (char)va_arg(args, int);
 
 					_putchar(*buffer);
 					len = len + 1;
