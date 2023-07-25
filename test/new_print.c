@@ -1,5 +1,47 @@
 #include "main.h"
 
+
+/**
+ * print_int - prints integers
+ *
+ * @num: number to print
+ * Return: 0
+ */
+
+void print_int(int num)
+{
+	int i, index;
+	char buffer[12];
+	if (num < 0)
+	{
+		_putchar('-');
+		num = -num;
+	}
+	if (num == 0)
+	{
+		_putchar('0');
+		return;
+	}
+
+	index = 0;
+	while (num > 0)
+	{
+		buffer[index] = '0' + (num % 10);
+		num = num / 10;
+		index++;
+	}
+	for (i = index - 1; i >= 0; i--)
+	{
+		_putchar(buffer[i]);
+	}
+}
+
+/**
+ *new_printf - prints anything.
+ *@format: the format string.
+ *
+ *Return: the number of characters printed
+ */
 int new_printf(const char *format, ...)
 {
 	int len = 0;
@@ -41,6 +83,14 @@ int new_printf(const char *format, ...)
 				case '%':
 				{
 					_putchar('%');
+					len = len + 1;
+					break;
+				}
+				case 'i':
+				case 'd':
+				{
+					int n = va_arg(args, int);
+					print_int(n);
 					len = len + 1;
 					break;
 				}
