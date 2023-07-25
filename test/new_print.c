@@ -1,5 +1,17 @@
 #include "main.h"
 
+/**
+ * print_char - print character
+ *
+ * @c: char to print
+ *
+ * Return: nothing
+ */
+
+void print_char(char c)
+{
+	_putchar(c);
+}
 
 /**
  * print_int - prints integers
@@ -38,12 +50,12 @@ void print_int(int num)
 }
 
 /**
- * _str - prints string
+ * print_str - prints string
  * @s: pointer to string
  *
  * Return: returns string value
  */
-int _str(char *s)
+int print_str(char *s)
 {
 	int i = 0;
 
@@ -68,52 +80,35 @@ int new_printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-
 	while (*format)
 	{
 		if (*format != '%')
-		{
-			_putchar(*format);
+			_print_char(*format);
 			len = len + 1;
-		}
 		else
 		{
 			format++;
 			switch (*format)
 			{
 				case 'c':
-				{
-					char c = (char)va_arg(args, int);
-
-					_putchar(c);
+					print_char((char)va_arg(args, int));
 					len = len + 1;
 					break;
-				}
 				case 's':
-				{
-					char *buffer = va_arg(args, char *);
-
-					len += _str(buffer);
+					len += print_str(va_arg(args, char *));
 					break;
-				}
 				case '%':
-				{
-					_putchar('%');
+					print_char('%');
 					len = len + 1;
 					break;
-				}
 				case 'i':
 				case 'd':
-				{
-					int n = va_arg(args, int);
-
-					print_int(n);
+					print_int(va_arg(args, int));
 					len = len + 1;
 					break;
-				}
 				default:
-					_putchar('%');
-					_putchar(*format);
+					print_char('%');
+					print_char(*format);
 					len = len + 2;
 			}
 		}
