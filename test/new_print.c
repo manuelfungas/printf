@@ -32,7 +32,7 @@ int new_printf(const char *format, ...)
 					{
 						_putchar(*buffer);
 						buffer;
-						count++;
+						len = len + 1;
 					}
 					break;
 				case '%':
@@ -41,7 +41,7 @@ int new_printf(const char *format, ...)
 					break;
 				default:
 					_putchar('%');
-					_putchar(ch);
+					_putchar(*format);
 					len = len + 2;
 			}
 		}
