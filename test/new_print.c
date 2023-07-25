@@ -1,10 +1,7 @@
-#include <stdio.h>
 #include "main.h"
-#include <stdarg.h>
 
 int new_printf(const char *format, ...)
-{ int new_printf(const char *format, ...)
-
+{
 	int len = 0;
 	char *buffer;
 	va_list args;
@@ -21,11 +18,11 @@ int new_printf(const char *format, ...)
 		else
 		{
 			format++;
-
 			switch (*format)
 			{
 				case 'c':
-					char c = (char)va_args(buffer, int);
+					char c = (char)va_args(args, int);
+
 					_putchar(c);
 					len = len + 1;
 					break;
@@ -39,7 +36,7 @@ int new_printf(const char *format, ...)
 					}
 					break;
 				case '%':
-					putchar('%');
+					_putchar('%');
 					len = len + 1;
 					break;
 				default:
@@ -51,6 +48,5 @@ int new_printf(const char *format, ...)
 		format++
 	}
 	va_end(args);
-
 	return (len);
 }
