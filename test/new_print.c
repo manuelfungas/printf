@@ -21,9 +21,9 @@ int new_printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					char c = (char)va_args(args, int);
+					buffer = (char *)va_arg(args, int);
 
-					_putchar(c);
+					_putchar(*buffer);
 					len = len + 1;
 					break;
 				case 's':
@@ -31,7 +31,7 @@ int new_printf(const char *format, ...)
 					while (*buffer)
 					{
 						_putchar(*buffer);
-						buffer;
+						buffer++;
 						len = len + 1;
 					}
 					break;
@@ -45,7 +45,7 @@ int new_printf(const char *format, ...)
 					len = len + 2;
 			}
 		}
-		format++
+		format++;
 	}
 	va_end(args);
 	return (len);
