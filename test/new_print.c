@@ -20,11 +20,7 @@ int new_printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-<<<<<<< HEAD
-					buffer = (char)va_arg(args, int);
-=======
 					char c = (char)va_arg(args, int);
->>>>>>> 321b5f1a5786dba6f01d23ffd9943cb772a84bb4
 
 					_putchar(c);
 					len = len + 1;
