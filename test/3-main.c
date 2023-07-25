@@ -2,12 +2,11 @@
 
 int main()
 {
-    int num = 42;
-    char letter = 'A';
-    char name[] = "John";
-
-    int result = new_printf("Number: %d, Letter: %c, Name: %s", num, letter, name);
-
-    return 0;
+	int found = 2019, curr = 2023;
+	printf("%d\n", found);
+	new_printf("%d\n", found);
+	printf("%i\n", curr);
+	new_printf("%i\n", curr);
+	return (0);
 }
 

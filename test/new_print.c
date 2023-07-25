@@ -12,6 +12,7 @@ void print_int(int num)
 {
 	int i, index;
 	char buffer[12];
+
 	if (num < 0)
 	{
 		_putchar('-');
@@ -34,6 +35,25 @@ void print_int(int num)
 	{
 		_putchar(buffer[i]);
 	}
+}
+
+/**
+ * _str - prints string
+ * @s: pointer to string
+ *
+ * Return: returns string value
+ */
+int _str(char *s)
+{
+	int i = 0;
+
+	while (*s)
+	{
+		_putchar(*s);
+		s++;
+		i++;
+	}
+	return (i);
 }
 
 /**
@@ -72,12 +92,8 @@ int new_printf(const char *format, ...)
 				case 's':
 				{
 					char *buffer = va_arg(args, char *);
-					while (*buffer)
-					{
-						_putchar(*buffer);
-						buffer++;
-						len = len + 1;
-					}
+
+					len += _str(buffer);
 					break;
 				}
 				case '%':
@@ -90,6 +106,7 @@ int new_printf(const char *format, ...)
 				case 'd':
 				{
 					int n = va_arg(args, int);
+
 					print_int(n);
 					len = len + 1;
 					break;
