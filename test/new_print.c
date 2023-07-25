@@ -20,16 +20,7 @@ int new_printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-					buffer = (char)va_arg(args, int);
-=======
-=======
 				{
->>>>>>> c3dd57c (one more)
->>>>>>> 7575e9f (one more)
 					char c = (char)va_arg(args, int);
 
 					_putchar(c);
