@@ -3,7 +3,6 @@
 int new_printf(const char *format, ...)
 {
 	int len = 0;
-	char *buffer;
 	va_list args;
 
 	va_start(args, format);
@@ -21,13 +20,17 @@ int new_printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
+<<<<<<< HEAD
 					buffer = (char)va_arg(args, int);
+=======
+					char c = (char)va_arg(args, int);
+>>>>>>> 321b5f1a5786dba6f01d23ffd9943cb772a84bb4
 
-					_putchar(*buffer);
+					_putchar(c);
 					len = len + 1;
 					break;
 				case 's':
-					buffer = va_arg(args, char *);
+					char *buffer = va_arg(args, char *);
 					while (*buffer)
 					{
 						_putchar(*buffer);
