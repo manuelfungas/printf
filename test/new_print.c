@@ -8,9 +8,16 @@
  * Return: nothing
  */
 
-void print_char(char c)
+int print_char(char c)
 {
+
+	int count;
+
 	_putchar(c);
+
+	count++;
+	return (count);
+
 }
 
 /**
@@ -20,9 +27,9 @@ void print_char(char c)
  * Return: 0
  */
 
-void print_int(int num)
+int print_int(int num)
 {
-	int i, index;
+	int i, index, count = 0;
 	char buffer[12];
 
 	if (num < 0)
@@ -47,6 +54,9 @@ void print_int(int num)
 	{
 		_putchar(buffer[i]);
 	}
+
+	count++;
+	return (count);
 }
 
 /**
@@ -84,7 +94,11 @@ int new_printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
+<<<<<<< HEAD
 			print_char(*format);
+=======
+			_print_char(*format);
+>>>>>>> 4f56f91 (let's see how it goes)
 			len = len + 1;
 		}
 		else
@@ -100,13 +114,11 @@ int new_printf(const char *format, ...)
 					len += print_str(va_arg(args, char *));
 					break;
 				case '%':
-					print_char('%');
-					len = len + 1;
+					len += print_char('%');
 					break;
 				case 'i':
 				case 'd':
-					print_int(va_arg(args, int));
-					len = len + 1;
+					len += print_int(va_arg(args, int));
 					break;
 				default:
 					print_char('%');
