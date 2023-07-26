@@ -83,8 +83,10 @@ int new_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format != '%')
-			_print_char(*format);
+		{
+			print_char(*format);
 			len = len + 1;
+		}
 		else
 		{
 			format++;
