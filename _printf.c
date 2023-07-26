@@ -83,7 +83,11 @@ int print_format(char specifier, va_list args)
 	else if (specifier == 'x')
 		count = print_digit((long)va_arg(args, unsigned int), 16);
 	else
+	{
 		count += write(1, &specifier, 1);
+		if (specifier != '\0')
+			count += write(1, &specifier, 1);
+	}
 	return (count);
 }
 
