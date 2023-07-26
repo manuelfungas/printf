@@ -71,8 +71,6 @@ int print_format(char specifier, va_list args)
 	count = 0;
 	if (specifier == 'c')
 		count = print_char(va_arg(args, int));
-	if (specifier == '%')
-		count = print_char('%');
 	else if (specifier == 's')
 		count = print_str(va_arg(args, char *));
 	else if (specifier == 'd' || specifier == 'i')
