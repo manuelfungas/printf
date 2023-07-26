@@ -11,12 +11,8 @@
 int print_char(char c)
 {
 
-	int count = 0;
-
 	_putchar(c);
-
-	count++;
-	return (count);
+	return (1);
 
 }
 
@@ -67,6 +63,12 @@ int print_int(int num)
 int print_str(char *s)
 {
 	int i = 0;
+
+	if (s == NULL)
+	{
+		print_str("(null)");
+		return (6);
+	}
 
 	while (*s)
 	{
