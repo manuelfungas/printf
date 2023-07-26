@@ -25,31 +25,19 @@ int print_char(char c)
 
 int print_int(int num)
 {
-	int i, index, count = 0;
-	char buffer[12];
+	int count = 0;
 
 	if (num < 0)
 	{
 		_putchar('-');
 		num = -num;
+		count++;
 	}
-	if (num == 0)
+	if (num / 10)
 	{
-		_putchar('0');
+		count += print_int(num / 10);
 	}
-
-	index = 0;
-	while (num > 0)
-	{
-		buffer[index] = '0' + (num % 10);
-		num = num / 10;
-		index++;
-	}
-	for (i = index - 1; i >= 0; i--)
-	{
-		_putchar(buffer[i]);
-	}
-
+	_putchar(num % 10 + '0');
 	count++;
 	return (count);
 }
