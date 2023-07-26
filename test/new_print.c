@@ -94,11 +94,7 @@ int new_printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-<<<<<<< HEAD
 			print_char(*format);
-=======
-			_print_char(*format);
->>>>>>> 4f56f91 (let's see how it goes)
 			len = len + 1;
 		}
 		else
