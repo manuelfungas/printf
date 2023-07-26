@@ -8,25 +8,21 @@
  *
  * Return: nothing
  */
-
 int print_char(char c)
 {
-
 	_putchar(c);
 	return (1);
-
 }
 
 /**
- * print_int - prints integers
+ * print_dec - prints decimal
  *
  * @num: number to print
  * Return: 0
  */
-
-int print_int(int num)
+int print_dec(int num)
 {
-		int i, index, count = 0;
+	int i, index, count = 0;
 	char buffer[12];
 
 	if (num < 0)
@@ -53,6 +49,36 @@ int print_int(int num)
 
 	count++;
 	return (count);
+}
+
+/**
+ * print_int - prints intergers
+ * @n: integer to print
+ * @base: base to use for printing
+ *
+ * Return: 0
+ */
+int print_int(int n, int base)
+{
+	char *digits = "0123456789ABCDEF";
+	char buffer[33];
+	int i = 0;
+
+	if (n < 0)
+	{
+		_putchar('-');
+		n = -n;
+	}
+	while (n != 0)
+	{
+		buffer[i++] = digits[n % base];
+		n /= base;
+	}
+	while (i > 0)
+	{
+		_putchar(buffer[--i]);
+	}
+	return (i);
 }
 
 /**
@@ -115,7 +141,7 @@ int _printf(const char *format, ...)
 					break;
 				case 'i':
 				case 'd':
-					len += print_int(va_arg(args, int));
+					len += print_int(va_arg(args, int), 10);
 					break;
 				default:
 					print_char('%');
