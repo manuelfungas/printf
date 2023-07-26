@@ -32,25 +32,42 @@ int print_int(int num)
 	{
 		_putchar('-');
 		num = -num;
+		count++;
+		return count;
 	}
 	if (num == 0)
 	{
 		_putchar('0');
 	}
+	if (num == INT_MIN)
+	{
+		_putchar('-');
+		num = -(num + 1);
+		index = 0;
+		while (num > 0)
+		{
+			buffer[index++] = '0' + (num % 10);
+			num = num / 10;
+		}
+		for (i = index - 1; i >= 0; i--)
+		{
+			_putchar(buffer[i]);
+			count++;
+		}
+		_putchar(buffer[index - 1] + 1);
+		return (count);
+	}
 
-	index = 0;
 	while (num > 0)
 	{
-		buffer[index] = '0' + (num % 10);
-		num = num / 10;
-		index++;
+		buffer[index++] = '0' + (num % 10);
+		num /= 10;
 	}
 	for (i = index - 1; i >= 0; i--)
 	{
 		_putchar(buffer[i]);
+		count++;
 	}
-
-	count++;
 	return (count);
 }
 
