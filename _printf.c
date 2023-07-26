@@ -1,7 +1,6 @@
 #include "main.h"
 /**
  * print_char - print character
- *
  * @c: char to print
  *
  * Return: nothing
@@ -12,10 +11,10 @@ int print_char(int c)
 }
 
 /**
- * print_digit- prints integers
- *
+ * print_digit - prints integers
  * @n: number to print
- * @base: base of the numebr
+ * @base: base of the number
+ *
  * Return: 0
  */
 int print_digit(long n, int base)
@@ -67,6 +66,7 @@ int print_str(char *s)
  * print_format - verifies specifiers
  * @specifier: specifier
  * @args: arguments
+ *
  * Return: Counter
  */
 int print_format(char specifier, va_list args)
