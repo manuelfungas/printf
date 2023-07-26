@@ -9,6 +9,7 @@
 int main(void)
 {
 	char str[] = "This Is Crazy!";
+
 	printf("%s\n", str);
 	new_printf("%s\n", str);
 	return (0);

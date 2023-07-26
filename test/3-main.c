@@ -1,8 +1,14 @@
 #include "main.h"
 
-int main()
+/**
+ * main -Entry point, test decimal and integer
+ *
+ * Return: Always 0 (success)
+ */
+int main(void)
 {
 	int found = 2019, curr = 2023;
+
 	printf("%d\n", found);
 	new_printf("%d\n", found);
 	printf("%i\n", curr);

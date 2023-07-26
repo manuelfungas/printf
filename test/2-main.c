@@ -9,6 +9,7 @@
 int main(void)
 {
 	char prc = '%';
+
 	printf("%%\n", prc);
 	new_printf("%%\n", prc);
 	return (0);
