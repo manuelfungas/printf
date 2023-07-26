@@ -11,7 +11,7 @@
 int print_char(char c)
 {
 
-	int count;
+	int count = 0;
 
 	_putchar(c);
 
@@ -40,7 +40,6 @@ int print_int(int num)
 	if (num == 0)
 	{
 		_putchar('0');
-		return;
 	}
 
 	index = 0;
