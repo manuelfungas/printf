@@ -58,7 +58,7 @@ int print_str(char *s)
 	}
 	while (*s)
 	{
-		count += write(1, s++, 1);
+		count += write(STDOUT_FILENO, s++, 1);
 	}
 	return (count);
 }
