@@ -71,8 +71,6 @@ int print_format(char specifier, va_list args)
 	count = 0;
 	if (specifier == 'c')
 		count = print_char(va_arg(args, int));
-	else if (specifier == '%')
-		count = print_char(va_arg('%');
 	else if (specifier == 's')
 		count = print_str(va_arg(args, char *));
 	else if (specifier == 'd' || specifier == 'i')
@@ -107,6 +105,10 @@ int _printf(const char *format, ...)
 			{
 				count += write(STDOUT_FILENO, "%", 1);
 				break;
+			}
+			else if (*format == '%')
+			{
+				count += write(STDOUT_FILENO, format, 1);
 			}
 			else
 			{
