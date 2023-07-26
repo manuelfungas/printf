@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-
 /**
  * print_char - print character
  *
@@ -8,51 +6,38 @@
  *
  * Return: nothing
  */
-
-int print_char(char c)
+int print_char(int c)
 {
-
-	_putchar(c);
-	return (1);
-
+	return (write(1, &c, 1));
 }
 
 /**
- * print_int - prints integers
+ * print_digit- prints integers
  *
- * @num: number to print
+ * @n: number to print
+ * @base: base of the numebr
  * Return: 0
  */
-
-int print_int(int num)
+int print_digit(long n, int base)
 {
-	int i, index, count = 0;
-	char buffer[12];
+	int count;
+	char *symbols;
 
-	if (num < 0)
+	symbols = "0123456789abcdef";
+	if (n < 0)
 	{
-		_putchar('-');
-		num = -num;
+		write(1, "-", 1);
+		return (print_digit(-n, base) + 1);
 	}
-	if (num == 0)
+	else if (n < base)
 	{
-		_putchar('0');
+		return (print_char(symbols[n]));
 	}
-
-	index = 0;
-	while (num > 0)
+	else
 	{
-		buffer[index] = '0' + (num % 10);
-		num = num / 10;
-		index++;
+		count = print_digit(n / base, base);
+		return (count + print_digit(n % base, base));
 	}
-	for (i = index - 1; i >= 0; i--)
-	{
-		_putchar(buffer[i]);
-	}
-
-	count++;
-	return (count);
 }
 
 /**
@@ -63,21 +48,38 @@ int print_int(int num)
  */
 int print_str(char *s)
 {
-	int i = 0;
+	int count;
 
-	if (s == NULL)
-	{
-		print_str("(null)");
-		return (6);
-	}
-
+	count = 0;
 	while (*s)
 	{
-		_putchar(*s);
-		s++;
-		i++;
+		count += write(1, s++, 1);
 	}
-	return (i);
+	return (count);
+}
+
+/**
+ * print_format - verifies specifiers
+ * @specifier: specifier
+ * @args: arguments
+ * Return: Counter
+ */
+int print_format(char specifier, va_list args)
+{
+	int count;
+
+	count = 0;
+	if (specifier == 'c')
+		count = print_char(va_arg(args, int));
+	else if (specifier == 's')
+		count = print_str(va_arg(args, char *));
+	else if (specifier == 'd' || specifier == 'i')
+		count = print_digit((long)va_arg(args, int), 10);
+	else if (specifier == 'x')
+		count = print_digit((long)va_arg(args, unsigned int), 16);
+	else
+		count += write(1, &specifier, 1);
+	return (count);
 }
 
 /**
@@ -88,43 +90,19 @@ int print_str(char *s)
  */
 int _printf(const char *format, ...)
 {
-	int len = 0;
-	va_list args;
+	va_list	args;
+	int count;
 
 	va_start(args, format);
+	count = 0;
 	while (*format)
 	{
-		if (*format != '%')
-		{
-			print_char(*format);
-			len +=  1;
-		}
+		if (*format == '%')
+			count += print_format(*++format, args);
 		else
-		{
-			format++;
-			switch (*format)
-			{
-				case 'c':
-					len += print_char((char)va_arg(args, int));
-					break;
-				case 's':
-					len += print_str(va_arg(args, char *));
-					break;
-				case '%':
-					len += print_char('%');
-					break;
-				case 'i':
-				case 'd':
-					len += print_int(va_arg(args, int));
-					break;
-				default:
-					print_char('%');
-					print_char(*format);
-					len += 2;
-			}
-		}
-		format++;
+			count += write(STDOUT_FILENO, format, 1);
+		++format;
 	}
 	va_end(args);
-	return (len);
+	return (count);
 }
