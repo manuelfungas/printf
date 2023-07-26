@@ -123,8 +123,8 @@ int _printf(const char *format, ...)
 		else
 		{
 		count += write(STDOUT_FILENO, format, 1);
-		format++;
 		}
+		format++;
 	}
 	va_end(args);
 	return (count);
