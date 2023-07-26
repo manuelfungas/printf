@@ -75,7 +75,6 @@ int print_str(char *s)
  */
 int _printf(const char *format, ...)
 {
-	int len = 0;
 	va_list args;
 
 	va_start(args, format);
@@ -84,7 +83,6 @@ int _printf(const char *format, ...)
 		if (*format != '%')
 		{
 			print_char(*format);
-			len = len + 1;
 		}
 		else
 		{
@@ -93,22 +91,20 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					print_char((char)va_arg(args, int));
-					len = len + 1;
 					break;
 				case 's':
-					len += print_str(va_arg(args, char *));
+					print_str(va_arg(args, char *));
 					break;
 				case '%':
-					len += print_char('%');
+					print_char('%');
 					break;
 				case 'i':
 				case 'd':
-					len += print_int(va_arg(args, int));
+					print_int(va_arg(args, int));
 					break;
 				default:
 					print_char('%');
 					print_char(*format);
-					len = len + 2;
 			}
 		}
 		format++;
