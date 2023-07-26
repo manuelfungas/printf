@@ -60,7 +60,7 @@ int print_dec(int num)
  */
 int print_int(int n, int base)
 {
-	char *digits = "0123456789ABCDEF";
+	char *digits = "0123456789abcdefABCDEF";
 	char buffer[33];
 	int i = 0;
 
@@ -124,30 +124,30 @@ int _printf(const char *format, ...)
 		{
 			print_char(*format);
 			len +=  1;
-		}
-		else
-		{
 			format++;
-			switch (*format)
-			{
-				case 'c':
-					len += print_char((char)va_arg(args, int));
-					break;
-				case 's':
-					len += print_str(va_arg(args, char *));
-					break;
-				case '%':
-					len += print_char('%');
-					break;
-				case 'i':
-				case 'd':
-					len += print_int(va_arg(args, int), 10);
-					break;
-				default:
-					print_char('%');
-					print_char(*format);
-					len += 2;
-			}
+			continue;
+		}
+
+		format++;
+		switch (*format)
+		{
+			case 'c':
+				len += print_char((char)va_arg(args, int));
+				break;
+			case 's':
+				len += print_str(va_arg(args, char *));
+				break;
+			case '%':
+				len += print_char('%');
+				break;
+			case 'i':
+			case 'd':
+				len += print_int(va_arg(args, int), 10);
+				break;
+			default:
+				print_char('%');
+				print_char(*format);
+				len += 2;
 		}
 		format++;
 	}
