@@ -95,13 +95,29 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 	count = 0;
+
 	while (*format)
 	{
 		if (*format == '%')
-			count += print_format(*++format, args);
+		{
+			format++;
+			if (*format == '\0')
+			{
+				count += write(STDOUT_FILENO, "%", 1);
+				break;
+			}
+			else if (*format == '%')
+			{
+				count += write(STDOUT_FILENO, format, 1);
+			}
+			else
+			{
+				count += print_format(*format, args);
+			}
+		}
 		else
 			count += write(STDOUT_FILENO, format, 1);
-		++format;
+		format++;
 	}
 	va_end(args);
 	return (count);
