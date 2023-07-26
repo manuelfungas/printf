@@ -96,7 +96,7 @@ int _printf(const char *format, ...)
 		if (*format != '%')
 		{
 			print_char(*format);
-			len = len + 1;
+			len +=  1;
 		}
 		else
 		{
@@ -104,8 +104,7 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					print_char((char)va_arg(args, int));
-					len = len + 1;
+					len += print_char((char)va_arg(args, int));
 					break;
 				case 's':
 					len += print_str(va_arg(args, char *));
@@ -120,7 +119,7 @@ int _printf(const char *format, ...)
 				default:
 					print_char('%');
 					print_char(*format);
-					len = len + 2;
+					len += 2;
 			}
 		}
 		format++;
