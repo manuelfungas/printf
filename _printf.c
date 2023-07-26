@@ -26,7 +26,7 @@ int print_char(char c)
 
 int print_int(int num)
 {
-		int i, index, count = 0;
+	int i, index, count = 0;
 	char buffer[12];
 
 	if (num < 0)
