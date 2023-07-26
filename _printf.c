@@ -54,7 +54,7 @@ int print_str(char *s)
 	if (s == NULL)
 	{
 		count += write(STDOUT_FILENO, "(null)", 6);
-        return (count);
+		return (count);
 	}
 	while (*s)
 	{
