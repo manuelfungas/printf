@@ -8,7 +8,14 @@
  */
 int print_char(int c)
 {
-	return (write(1, &c, 1));
+	int result = write(STDOUT_FILENO, &c, 1);
+
+	if (result == -1)
+	{
+		perror("Error writing character");
+		return (-1);
+	}
+	return (result);
 }
 
 /**
@@ -48,9 +55,8 @@ int print_digit(long n, int base)
  */
 int print_str(char *s)
 {
-	int count;
+	int count = 0;
 
-	count = 0;
 	if (s == NULL)
 	{
 		count += write(STDOUT_FILENO, "(null)", 6);
@@ -58,7 +64,14 @@ int print_str(char *s)
 	}
 	while (*s)
 	{
-		count += write(STDOUT_FILENO, s++, 1);
+		int result = write(STDOUT_FILENO, s++, 1);
+
+		if (result == -1)
+		{
+			perror("Error writing string");
+			return (-1);
+		}
+		coutn += result;
 	}
 	return (count);
 }
@@ -84,7 +97,14 @@ int print_format(char specifier, va_list args)
 		count = print_digit((long)va_arg(args, unsigned int), 16);
 	else
 	{
-		count += write(1, &specifier, 1);
+		int result = write(STDOUT_FILENO, &specifier, 1);
+
+		if (result == -1)
+		{
+			perror("Error writing specifier");
+			return (-1);
+		}
+		count += result;
 	}
 	return (count);
 }
