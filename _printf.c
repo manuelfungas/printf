@@ -19,7 +19,7 @@ int print_char(int c)
  */
 int print_digit(long n, int base)
 {
-	int count;
+	int count = 0;
 	char *symbols;
 
 	symbols = "0123456789abcdef";
