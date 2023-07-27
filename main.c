@@ -12,7 +12,6 @@ int main(void)
 	char first_ch;
 	char prc;
 	int found = 2019, curr = 2023;
-	float num = 19.99;
 
 	first_ch = 'f';
 	prc = '%';
@@ -26,7 +25,5 @@ int main(void)
 	_printf("%d\n", found);
 	printf("%i\n", curr);
 	_printf("%i\n", curr);
-	printf("%f\n", num);
-	_printf("%f\n", num);
 	return (0);
 }
