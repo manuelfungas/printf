@@ -19,7 +19,7 @@ int print_char(int c)
  */
 int print_digit(long n, int base)
 {
-	int count;
+	int count = 0;
 	char *symbols;
 
 	symbols = "0123456789abcdef";
@@ -52,8 +52,7 @@ int print_str(char *s)
 	count = 0;
 	if (s == NULL)
 	{
-		count += write(STDOUT_FILENO, "(null)", 6);
-		return (count);
+		return (write(STDOUT_FILENO, "(null)", 6));
 	}
 	while (*s)
 	{
@@ -78,17 +77,13 @@ int print_format(char specifier, va_list args)
 		count = print_char(va_arg(args, int));
 	else if (specifier == 's')
 		count = print_str(va_arg(args, char *));
-	else if (specifier == 'd')
+	else if (specifier == 'd' || specifier == 'i')
 		count = print_digit((long)va_arg(args, int), 10);
-	else if (specifier == 'i')
-		count = print_digit((long)va_arg(args, int), 10);
+	else if (specifier == 'x')
+		count = print_digit((long)va_args(args, unsigned int), 16);
 	else
 	{
 		count += write(1, &specifier, 1);
-		if (specifier != '\0')
-		{
-			count += write(1, &specifier, 1);
-		}
 	}
 	return (count);
 }
